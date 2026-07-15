@@ -1,5 +1,5 @@
 [project]
-name = "first-crud-fastapi"
+name = "first-cicd"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"

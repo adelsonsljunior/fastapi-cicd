@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: checkout
     env:
-      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/first-crud-fastapi
+      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/first-cicd
       IMAGE_TAG: ${{ needs.checkout.outputs.commit_hash }}
     steps:
       - name: Checkout Repository

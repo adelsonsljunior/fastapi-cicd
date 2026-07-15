@@ -218,7 +218,7 @@ wheels = [
 ]
 
 [[package]]
-name = "first-crud-fastapi"
+name = "first-cicd"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

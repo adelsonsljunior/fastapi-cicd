@@ -1,4 +1,4 @@
-# first-crud-fastapi
+# first-cicd
 
 Run the application
 ~~~bash

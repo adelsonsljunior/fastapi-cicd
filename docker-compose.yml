@@ -1,4 +1,4 @@
-name: first-crud-fastapi
+name: first-cicd
 
 services:
   app:
