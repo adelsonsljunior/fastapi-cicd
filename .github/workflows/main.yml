@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  commit-hash:
+  get-commit-hash:
     name: Get Commit Hash
     runs-on: ubuntu-latest
     outputs:
@@ -39,7 +39,9 @@ jobs:
   docker:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
-    needs: scan-dependencies
+    needs: 
+      - get-commit-hash
+      - scan-dependencies
     env:
       IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/first-cicd
       IMAGE_TAG: ${{ needs.checkout.outputs.commit_hash }}
