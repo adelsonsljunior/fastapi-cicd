@@ -13,7 +13,7 @@ jobs:
       commit_hash: ${{ steps.get_commit_hash.outputs.commit_hash }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Get short commit hash
         id: get_commit_hash
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Trivy Scan Dependency
         uses: aquasecurity/trivy-action@v0.36.0
