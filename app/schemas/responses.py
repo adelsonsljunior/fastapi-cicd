@@ -1,9 +1,10 @@
 from pydantic import BaseModel
 from typing import Generic, TypeVar
+from uuid import UUID
 
 
 class IdResponse(BaseModel):
-    id: int
+    id: UUID
 
 
 class ErrorResponse(BaseModel):

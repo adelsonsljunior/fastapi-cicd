@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, func
+import uuid
+
+from sqlalchemy import Column, Uuid, String, Boolean, DateTime, func
 from app.configs.database import Base
 
 
 class Post(Base):
     __tablename__ = "post"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Uuid, primary_key=True, default=uuid.uuid4)
     username = Column(String, nullable=False)
     body = Column(String, nullable=False)
     archived = Column(Boolean, default=False)
