@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
+from uuid import UUID
 
 
 class PostBase(BaseModel):
@@ -23,7 +24,7 @@ class PostUpdateDto(PostBase):
 
 
 class PostResponseDto(PostBase):
-    id: int
+    id: UUID
     username: str
     archived: bool
     created_at: datetime

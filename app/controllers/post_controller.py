@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from fastapi import status, Response
@@ -77,7 +79,7 @@ class PostController:
         self.db.refresh(post)
         return IdResponse(id=post.id)
 
-    def find_by_id(self, post_id: int):
+    def find_by_id(self, post_id: UUID):
         post = self.db.query(Post).filter(Post.id == post_id).first()
         if not post:
             return JSONResponse(
@@ -86,7 +88,7 @@ class PostController:
             )
         return post
 
-    def update(self, post_id: int, data: PostUpdateDto):
+    def update(self, post_id: UUID, data: PostUpdateDto):
         post = self.db.query(Post).filter(Post.id == post_id).first()
         if not post:
             return JSONResponse(
@@ -102,7 +104,7 @@ class PostController:
 
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 
-    def archive(self, post_id: int):
+    def archive(self, post_id: UUID):
         post = self.db.query(Post).filter(Post.id == post_id).first()
         if not post:
             return JSONResponse(
@@ -122,7 +124,7 @@ class PostController:
 
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 
-    def unarchive(self, post_id: int):
+    def unarchive(self, post_id: UUID):
         post = self.db.query(Post).filter(Post.id == post_id).first()
         if not post:
             return JSONResponse(
@@ -142,7 +144,7 @@ class PostController:
 
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 
-    def delete(self, post_id: int):
+    def delete(self, post_id: UUID):
         post = self.db.query(Post).filter(Post.id == post_id).first()
         if not post:
             return JSONResponse(

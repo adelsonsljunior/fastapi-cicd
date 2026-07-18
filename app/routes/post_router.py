@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
@@ -30,7 +32,7 @@ async def create(data: PostCreateDto, db: Session = Depends(get_db)):
     response_model=PostResponseDto,
     responses={404: {"model": ErrorResponse}},
 )
-async def find_by_id(post_id: int, db: Session = Depends(get_db)):
+async def find_by_id(post_id: UUID, db: Session = Depends(get_db)):
     controller = PostController(db)
     return controller.find_by_id(post_id)
 
@@ -49,7 +51,7 @@ async def find_all_by_username(
 
 
 @router.patch("/{post_id}")
-async def update(post_id: int, data: PostUpdateDto, db: Session = Depends(get_db)):
+async def update(post_id: UUID, data: PostUpdateDto, db: Session = Depends(get_db)):
     controller = PostController(db)
     return controller.update(post_id, data)
 
@@ -59,7 +61,7 @@ async def update(post_id: int, data: PostUpdateDto, db: Session = Depends(get_db
     status_code=204,
     responses={404: {"model": ErrorResponse}, 409: {"model": ErrorResponse}},
 )
-async def archive(post_id: int, db: Session = Depends(get_db)):
+async def archive(post_id: UUID, db: Session = Depends(get_db)):
     controller = PostController(db)
     return controller.archive(post_id)
 
@@ -69,12 +71,12 @@ async def archive(post_id: int, db: Session = Depends(get_db)):
     status_code=204,
     responses={404: {"model": ErrorResponse}, 409: {"model": ErrorResponse}},
 )
-async def unarchive(post_id: int, db: Session = Depends(get_db)):
+async def unarchive(post_id: UUID, db: Session = Depends(get_db)):
     controller = PostController(db)
     return controller.unarchive(post_id)
 
 
 @router.delete("/{post_id}", status_code=204, responses={404: {"model": ErrorResponse}})
-async def delete(post_id: int, db: Session = Depends(get_db)):
+async def delete(post_id: UUID, db: Session = Depends(get_db)):
     controller = PostController(db)
     return controller.delete(post_id)
