@@ -27,4 +27,5 @@ app.include_router(api_router)
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000)
+    # PORT e reload saem das envs (settings). reload só em dev.
+    uvicorn.run("app.main:app", host="0.0.0.0", port=settings.PORT, reload=is_dev)
