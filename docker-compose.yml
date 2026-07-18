@@ -1,7 +1,7 @@
 name: first-cicd
 
 services:
-  app:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,21 +14,22 @@ services:
         condition: service_healthy
 
   database:
-    image: postgres:16-alpine
-    env_file:
-      - .env
+    image: postgres:18-alpine
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: fastapi
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: fastapi_db
     ports:
-      - "${DB_PORT}:5432"
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
     healthcheck:
       test:
-        ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+        ["CMD-SHELL", "pg_isready -U fastapi -d fastapi_db"]
       interval: 5s
       timeout: 5s
       retries: 5
       start_period: 5s
 
-    
+volumes:
+  postgres_data:
